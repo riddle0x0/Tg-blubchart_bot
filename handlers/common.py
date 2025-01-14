@@ -138,7 +138,9 @@ async def cmd_chart(message: Message, state: FSMContext):
     # Directly pass the BytesIO object to answer_photo
     await message.answer_photo(photo=photo_file, caption=f"The current price of BLUB is: {price} USD")
 
-        
+@router.message(Command(commands=["help"]))
+async def cmd_help(message: Message, state: FSMContext):
+    await message.answer("This Bot is designed to help you with your trading on the BLUB platform. It provides you with the latest price of BLUB, as well as a chart of the price over time. It also allows you to set up alerts for when the price of BLUB reaches a certain level.") 
 
 @router.message(Command(commands=["price"]))
 async def cmd_price(message: Message, state: FSMContext):
