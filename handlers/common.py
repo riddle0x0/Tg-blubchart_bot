@@ -52,6 +52,7 @@ async def cmd_start(message: Message, state: FSMContext):
 
 @router.message(Command(commands=["chart"]))
 async def cmd_chart(message: Message, state: FSMContext):
+    processing_message = await message.answer("Processing your request...")
     token_symbol = "BLUB_USDT"
     price = get_token_price(token_symbol)
     latest_image = get_latest_image()
@@ -69,7 +70,8 @@ async def cmd_chart(message: Message, state: FSMContext):
    
     photo_file = FSInputFile(path=photo_file)
     # Directly pass the BytesIO object to answer_photo
-    await message.answer_photo(photo=photo_file, caption=f"The current price of BLUB is: {price} USD")
+    await processing_message.answer_photo(photo=photo_file, caption=f"The current price of BLUB is: {price} USD")
+    await processing_message.delete()
 
 @router.message(Command(commands=["help"]))
 async def cmd_help(message: Message, state: FSMContext):
