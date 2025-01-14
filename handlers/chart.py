@@ -46,7 +46,7 @@ def get_chart_image(token_symbol):
         image = Image.open(io.BytesIO(full_screenshot))
 
         # Define the rectangle area to crop (left, upper, right, lower)
-        area = (395, 192, 1490, 610)
+        area = (395, 192, 1490, 630)
         cropped_image = image.crop(area)
 
         # Save or process the cropped image
